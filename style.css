@@ -1,5 +1,30 @@
-html {
-  height: 100%;
-  width: 100%;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.background {
+  width: 100%;
+  display: block;
+}
+
+.field {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+#submitBtn {
+  margin-top: 20px;
+}
