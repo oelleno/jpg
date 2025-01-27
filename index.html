@@ -2,136 +2,112 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>전자계약서</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전자계약서</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 </head>
 
 <body>
-    <div class="container" id="container">
-        <img src="image.jpg" alt="Membership Agreement" class="background">
-        <input type="text" id="nameField" class="field" style="top: 122px; left: 50px; width: 133px;"
-            placeholder="이름 입력" pattern="[가-힣]{2,5}" title="한글 2~5자만 입력 가능합니다.">
-        <input type="text" id="phoneField" class="field" style="top: 122px; left: 230px; width: 150px;"
-            placeholder="전화번호 입력" pattern="010-\d{4}-\d{4}" title="010-XXXX-XXXX 형식의 전화번호를 입력해주세요.">
-        <div style="position: absolute; top: 122px; left: 400px;">
-            <input type="radio" name="gender" value="male" style="margin-left: 20px; margin-top: 8px;"> 남
-            <input type="radio" name="gender" value="female" style="margin-left: 35px; margin-top: 8px;"> 여
-        </div>
-        <div style="position: absolute; top: 292px; left: 30px; font-size: 12px;">
-            <input type="checkbox" name="purpose" value="diet" style="margin-left: 10px;"> 다이어트
-            <input type="checkbox" name="purpose" value="muscle" style="margin-left: 10px;"> 근육증가
-            <input type="checkbox" name="purpose" value="posture" style="margin-left: 10px;"> 체형교정
-            <input type="checkbox" name="purpose" value="rehab" style="margin-left: 10px;"> 재활운동<br>
-            <span style="margin-left: 65px; margin-top: -50px; display: inline-block;">
-                <input type="checkbox" name="purpose" value="other" style="margin-left: 10px;"> 기타
-                <input type="text" class="field" style="position: relative; width: 100px; margin-left: 10px;"
-                    placeholder="기타 사유">
-            </span>
-            <div style="margin-left: 25px; margin-top: 40px;">
-                <input type="checkbox" name="time" value="morning"> 오전
-                <input type="text" class="field" style="position: relative; width: 80px; margin-left: 5px;"
-                    placeholder="시간 입력">
-                <input type="checkbox" name="time" value="afternoon" style="margin-left: 10px;"> 오후
-                <input type="text" class="field" style="position: relative; width: 80px; margin-left: 5px;"
-                    placeholder="시간 입력">
-            </div>
-
-        </div>
-        <div style="position: absolute; top: 262px; left: 450px; font-size: 12px;">
-            <input type="checkbox" name="payment" value="bank" style="margin-left: 10px;"> 계좌이체
-            <input type="checkbox" name="payment" value="cash" style="margin-left: 10px;"> 현금
-            <input type="checkbox" name="payment" value="card" style="margin-left: 10px;"> 카드
-            <br>
-            <span style="margin-left: 65px;">
-                <label>총 합계: </label>
-                <input type="text" id="totalAmountInput" class="field"
-                    style="position: relative; width: 150px; margin-left: 10px;" placeholder="총 합계 입력">
-            </span>
-        </div>
-        <input type="text" class="field" style="top: 122px; left: 570px; width: 150px;" placeholder="생년월일 입력"
-            pattern="\d{4}-\d{2}-\d{2}" title="YYYY-MM-DD 형식의 날짜를 입력해주세요.">
-        <input type="text" class="field" style="top: 170px; left: 50px; width: 292px;" placeholder="주소 입력"
-            id="sample6_address">
-        <select class="field" style="top: 170px; left: 490px; width: 65px; height: 28px;">
-            <option value="new">New</option>
-            <option value="renew">Renew</option>
-            <option value="upgrade">Upgrade</option>
-        </select>
-        <input type="text" class="field" style="top: 170px; left: 560px; width: 37.5px;" placeholder="개월수 입력"
-            pattern="\d+" title="숫자만 입력 가능합니다.">
-        <input type="text" class="field" style="top: 220px; left: 50px; width: 37.5px;" placeholder="운동복 개월수 입력"
-            pattern="\d+" title="숫자만 입력 가능합니다.">
-        <input type="text" class="field" style="top: 220px; left: 200px; width: 37.5px;" placeholder="개인락카 개월수 입력"
-            pattern="\d+" title="숫자만 입력 가능합니다.">
-
-        <!-- ZIP Code Functionality -->
-        <button type="button" onclick="sample6_execDaumPostcode()" style="top: 170px; left: 360px;">주소 검색</button>
-        <!-- 다른 입력 요소는 생략 -->
-
-        <!-- Signature Canvas -->
-        <div style="position: absolute; top: 1000px; left: 500px;">
-            <canvas id="signatureCanvas" width="100" height="50" style="border: 1px solid #000;"></canvas>
-            <button id="clearSignature" style="margin-top: 10px;">서명 지우기</button>
-        </div>
-
-        <button id="submitBtn">제출</button>
+  <div class="container" id="container">
+    <img src="image.jpg" alt="Membership Agreement" class="background">
+    <input type="text" id="nameField" class="field" style="top: 122px; left: 50px; width: 133px;" placeholder="이름 입력"
+      pattern="[가-힣]{2,5}" title="한글 2~5자만 입력 가능합니다.">
+    <input type="text" id="phoneField" class="field" style="top: 122px; left: 230px; width: 150px;"
+      placeholder="전화번호 입력" pattern="010-\d{4}-\d{4}" title="010-XXXX-XXXX 형식의 전화번호를 입력해주세요.">
+    <div style="position: absolute; top: 122px; left: 400px;">
+      <input type="radio" name="gender" value="male" style="margin-left: 20px; margin-top: 8px;"> 남
+      <input type="radio" name="gender" value="female" style="margin-left: 35px; margin-top: 8px;"> 여
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="script.js"></script>
-    <script>
-        // ZIP Code Functionality
-        function sample6_execDaumPostcode() {
-            new daum.Postcode({
-                oncomplete: function (data) {
-                    var addr = ''; // 주소 변수
+    <div style="position: absolute; top: 292px; left: 30px; font-size: 12px;">
+      <input type="checkbox" name="purpose" value="diet" style="margin-left: 10px;"> 다이어트
+      <input type="checkbox" name="purpose" value="muscle" style="margin-left: 10px;"> 근육증가
+      <input type="checkbox" name="purpose" value="posture" style="margin-left: 10px;"> 체형교정
+      <input type="checkbox" name="purpose" value="rehab" style="margin-left: 10px;"> 재활운동<br>
+      <span style="margin-left: 65px; margin-top: -50px; display: inline-block;">
+        <input type="checkbox" name="purpose" value="other" style="margin-left: 10px;"> 기타
+        <input type="text" class="field" style="position: relative; width: 100px; margin-left: 10px;"
+          placeholder="기타 사유">
+      </span>
+      <div style="margin-left: 25px; margin-top: 40px;">
+        <input type="checkbox" name="time" value="morning"> 오전
+        <input type="text" class="field" style="position: relative; width: 80px; margin-left: 5px;" placeholder="시간 입력">
+        <input type="checkbox" name="time" value="afternoon" style="margin-left: 10px;"> 오후
+        <input type="text" class="field" style="position: relative; width: 80px; margin-left: 5px;" placeholder="시간 입력">
+      </div>
 
-                    // 사용자가 선택한 주소 타입에 따라 주소 설정
-                    if (data.userSelectedType === 'R') { // 도로명 주소 선택
-                        addr = data.roadAddress;
-                    } else { // 지번 주소 선택
-                        addr = data.jibunAddress;
-                    }
+    </div>
+    <div style="position: absolute; top: 262px; left: 450px; font-size: 12px;">
+      <input type="checkbox" name="payment" value="bank" style="margin-left: 10px;"> 계좌이체
+      <input type="checkbox" name="payment" value="cash" style="margin-left: 10px;"> 현금
+      <input type="checkbox" name="payment" value="card" style="margin-left: 10px;"> 카드
+      <br>
+      <span style="margin-left: 65px;">
+        <label>총 합계: </label>
+        <input type="text" id="totalAmountInput" class="field" style="position: relative; width: 150px; margin-left: 10px;"
+          placeholder="총 합계 입력">
+      </span>
+    </div>
+    <input type="text" class="field" style="top: 122px; left: 570px; width: 150px;" placeholder="생년월일 입력"
+      pattern="\d{4}-\d{2}-\d{2}" title="YYYY-MM-DD 형식의 날짜를 입력해주세요.">
+    <input type="text" class="field" style="top: 170px; left: 50px; width: 292px;" placeholder="주소 입력"
+      id="sample6_address">
+    <select class="field" style="top: 170px; left: 490px; width: 65px; height: 28px;">
+      <option value="new">New</option>
+      <option value="renew">Renew</option>
+      <option value="upgrade">Upgrade</option>
+    </select>
+    <input type="text" class="field" style="top: 170px; left: 560px; width: 37.5px;" placeholder="개월수 입력" pattern="\d+"
+      title="숫자만 입력 가능합니다.">
+    <input type="text" class="field" style="top: 220px; left: 50px; width: 37.5px;" placeholder="운동복 개월수 입력"
+      pattern="\d+" title="숫자만 입력 가능합니다.">
+    <input type="text" class="field" style="top: 220px; left: 200px; width: 37.5px;" placeholder="개인락카 개월수 입력"
+      pattern="\d+" title="숫자만 입력 가능합니다.">
+    <input type="text" id="registrationFeeInput" class="field" style="top: 200px; left: 500px; width: 150px; height: 20px; font-size: 12px;" 
+      placeholder="가입비 입력">
+    <input type="text" id="membershipFeeInput" class="field" style="top: 230px; left: 500px; width: 150px;" 
+      placeholder="기간회비 입력">
 
-                    // 주소 필드에 선택한 주소만 입력
-                    document.getElementById('sample6_address').value = addr;
-                }
-            }).open();
+    <!-- ZIP Code Functionality -->
+    <button type="button" onclick="sample6_execDaumPostcode()" style="top: 170px; left: 360px;">주소 검색</button>
+    <!-- 다른 입력 요소는 생략 -->
+
+    <!-- Signature Canvas -->
+    <div style="position: absolute; top: 1000px; left: 500px;">
+      <canvas id="signatureCanvas" width="100" height="50" style="border: 1px solid #000; cursor: pointer;"></canvas>
+      <button id="clearSignature" style="margin-top: 10px;">서명 지우기</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="signatureModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+      <div style="position: relative; width: 500px; height: 300px; margin: 100px auto; background: white; padding: 20px; border-radius: 8px;">
+        <canvas id="modalSignatureCanvas" width="460" height="200" style="border: 1px solid #000;"></canvas>
+        <button id="confirmSignature" style="position: absolute; bottom: 20px; right: 20px;">확인</button>
+      </div>
+    </div>
+
+    <button id="submitBtn">제출</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // ZIP Code Functionality
+    function sample6_execDaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          var addr = '';
+          if (data.userSelectedType === 'R') {
+            addr = data.roadAddress;
+          } else {
+            addr = data.jibunAddress;
+          }
+          document.getElementById('sample6_address').value = addr;
         }
-
-        // Signature Functionality
-        const canvas = document.getElementById('signatureCanvas');
-        const ctx = canvas.getContext('2d');
-        let drawing = false;
-
-        canvas.addEventListener('mousedown', (e) => {
-            drawing = true;
-            ctx.beginPath();
-            ctx.moveTo(e.offsetX, e.offsetY);
-        });
-
-        canvas.addEventListener('mousemove', (e) => {
-            if (drawing) {
-                ctx.lineTo(e.offsetX, e.offsetY);
-                ctx.stroke();
-            }
-        });
-
-        canvas.addEventListener('mouseup', () => {
-            drawing = false;
-        });
-
-        canvas.addEventListener('mouseout', () => {
-            drawing = false;
-        });
-
-        document.getElementById('clearSignature').addEventListener('click', () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        });
-    </script>
+      }).open();
+    }
+  </script>
 </body>
 
 </html>
