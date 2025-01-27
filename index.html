@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹페이지 만들기</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .input-field {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid #ccc;
+            color: blue;
+            z-index: 2;
+            font-family: Arial, sans-serif;
+        }
+
+        #signatureArea {
+            position: absolute;
+            border: 1px solid black;
+            z-index: 2;
+        }
+
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <input type="text" id="nameField" class="input-field" placeholder="이름" />
+    <input type="checkbox" id="checkbox1" class="input-field" />
+    <button id="submitButton" class="input-field">제출하기</button>
+
+    <div id="signatureArea">
+        <canvas id="signatureCanvas"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
