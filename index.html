@@ -21,6 +21,36 @@
             <input type="radio" name="gender" value="male" style="margin-left: 20px; margin-top: 8px;"> 남
             <input type="radio" name="gender" value="female" style="margin-left: 35px; margin-top: 8px;"> 여
         </div>
+        <div style="position: absolute; top: 292px; left: 30px; font-size: 12px;">
+            <input type="checkbox" name="purpose" value="diet" style="margin-left: 10px;"> 다이어트
+            <input type="checkbox" name="purpose" value="muscle" style="margin-left: 10px;"> 근육증가
+            <input type="checkbox" name="purpose" value="posture" style="margin-left: 10px;"> 체형교정
+            <input type="checkbox" name="purpose" value="rehab" style="margin-left: 10px;"> 재활운동<br>
+            <div style="margin-left: 25px; margin-top: 40px;">
+                <input type="checkbox" name="time" value="morning"> 오전
+                <input type="text" class="field" style="position: relative; width: 80px; margin-left: 5px;"
+                    placeholder="시간 입력">
+                <input type="checkbox" name="time" value="afternoon" style="margin-left: 10px;"> 오후
+                <input type="text" class="field" style="position: relative; width: 80px; margin-left: 5px;"
+                    placeholder="시간 입력">
+            </div>
+            <span style="margin-left: 65px;">
+                <input type="checkbox" name="purpose" value="other" style="margin-left: 10px;"> 기타
+                <input type="text" class="field" style="position: relative; width: 100px; margin-left: 10px;"
+                    placeholder="기타 사유">
+            </span>
+        </div>
+        <div style="position: absolute; top: 262px; left: 450px; font-size: 12px;">
+            <input type="checkbox" name="payment" value="bank" style="margin-left: 10px;"> 계좌이체
+            <input type="checkbox" name="payment" value="cash" style="margin-left: 10px;"> 현금
+            <input type="checkbox" name="payment" value="card" style="margin-left: 10px;"> 카드
+            <br>
+            <span style="margin-left: 65px;">
+                <label>총 합계: </label>
+                <input type="text" class="field" style="position: relative; width: 150px; margin-left: 10px;"
+                    placeholder="총 합계 입력">
+            </span>
+        </div>
         <input type="text" class="field" style="top: 122px; left: 570px; width: 150px;" placeholder="생년월일 입력"
             pattern="\d{4}-\d{2}-\d{2}" title="YYYY-MM-DD 형식의 날짜를 입력해주세요.">
         <input type="text" class="field" style="top: 170px; left: 50px; width: 292px;" placeholder="주소 입력"
