@@ -2,100 +2,144 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>전자계약서</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전자계약서</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    .container {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    .background {
-      width: 100%;
-      display: block;
-    }
+        .background {
+            width: 100%;
+            display: block;
+        }
 
-    .field {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid #ccc;
-      padding: 5px;
-      font-size: 14px;
-      border-radius: 8px;
-    }
+        .field {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
 
-    #submitBtn {
-      margin-top: 20px;
-    }
-  </style>
+        #submitBtn {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="container" id="container">
-    <img src="image.jpg" alt="Membership Agreement" class="background">
-    <input type="text" id="nameField" class="field" style="top: 122px; left: 50px; width: 133px;" placeholder="이름 입력"
-      pattern="[가-힣]{2,5}" title="한글 2~5자만 입력 가능합니다.">
-    <input type="text" id="phoneField" class="field" style="top: 122px; left: 230px; width: 150px;"
-      placeholder="전화번호 입력" pattern="010-\d{4}-\d{4}" title="010-XXXX-XXXX 형식의 전화번호를 입력해주세요.">
-    <div style="position: absolute; top: 122px; left: 400px;">
-      <input type="radio" name="gender" value="male" style="margin-left: 20px; margin-top: 8px;"> 남
-      <input type="radio" name="gender" value="female" style="margin-left: 35px; margin-top: 8px;"> 여
-    </div>
-    <input type="text" class="field" style="top: 122px; left: 570px; width: 150px;" placeholder="생년월일 입력"
-      pattern="\d{4}-\d{2}-\d{2}" title="YYYY-MM-DD 형식의 날짜를 입력해주세요.">
-    <input type="text" class="field" style="top: 170px; left: 50px; width: 292px;" placeholder="주소 입력">
-    <input type="text" class="field" style="top: 170px; left: 560px; width: 37.5px;" placeholder="개월수 입력" pattern="\d+"
-      title="숫자만 입력 가능합니다.">
-    <input type="text" class="field" style="top: 220px; left: 50px; width: 37.5px;" placeholder="운동복 개월수 입력"
-      pattern="\d+" title="숫자만 입력 가능합니다.">
-    <input type="text" class="field" style="top: 220px; left: 200px; width: 37.5px;" placeholder="개인락카 개월수 입력"
-      pattern="\d+" title="숫자만 입력 가능합니다.">
-    <button id="submitBtn">제출</button>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script>
-    const nameField = document.getElementById('nameField');
-    nameField.addEventListener('blur', () => {
-      const value = nameField.value;
-      if (value.length < 2 || value.length > 5) {
-        alert('이름은 한글 2~5자만 입력 가능합니다.');
-      }
-    });
-    const phoneField = document.getElementById('phoneField');
-    phoneField.addEventListener('blur', () => {
-      const value = phoneField.value.replace(/[^0-9]/g, '');
-      if (value.length !== 11) {
-        alert('전화번호는 11자리 숫자를 입력해야 합니다.');
-        phoneField.value = '';
-      } else {
-        phoneField.value = `${value.slice(0, 3)}-${value.slice(3, 7)}-${value.slice(7)}`;
-      }
-    });
-    phoneField.addEventListener('input', () => {
-      const value = phoneField.value.replace(/[^0-9]/g, '');
-      phoneField.value = value.slice(0, 11);
-    });
+    <div class="container" id="container">
+        <img src="image.jpg" alt="Membership Agreement" class="background">
+        <input type="text" id="nameField" class="field" style="top: 122px; left: 50px; width: 133px;"
+            placeholder="이름 입력" pattern="[가-힣]{2,5}" title="한글 2~5자만 입력 가능합니다.">
+        <input type="text" id="phoneField" class="field" style="top: 122px; left: 230px; width: 150px;"
+            placeholder="전화번호 입력" pattern="010-\d{4}-\d{4}" title="010-XXXX-XXXX 형식의 전화번호를 입력해주세요.">
+        <div style="position: absolute; top: 122px; left: 400px;">
+            <input type="radio" name="gender" value="male" style="margin-left: 20px; margin-top: 8px;"> 남
+            <input type="radio" name="gender" value="female" style="margin-left: 35px; margin-top: 8px;"> 여
+        </div>
+        <input type="text" class="field" style="top: 122px; left: 570px; width: 150px;" placeholder="생년월일 입력"
+            pattern="\d{4}-\d{2}-\d{2}" title="YYYY-MM-DD 형식의 날짜를 입력해주세요.">
 
-    document.getElementById('submitBtn').addEventListener('click', () => {
-      html2canvas(document.getElementById('container')).then(canvas => {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/jpeg');
-        link.download = 'contract.jpg';
-        link.click();
-      }).catch(error => {
-        console.error('캔버스 생성 중 오류 발생:', error);
-      });
-    });
-  </script>
+        <!-- ZIP Code and Address Fields -->
+        <input type="text" id="sample6_postcode" class="field" style="top: 170px; left: 50px; width: 100px;"
+            placeholder="우편번호 입력">
+        <input type="text" id="sample6_address" class="field" style="top: 170px; left: 160px; width: 292px;"
+            placeholder="주소 입력" readonly>
+        <input type="text" id="sample6_extraAddress" class="field" style="top: 170px; left: 460px; width: 292px;"
+            placeholder="상세주소 입력">
+        <button type="button" onclick="sample6_execDaumPostcode()" style="top: 170px; left: 760px;">주소 검색</button>
+
+        <input type="text" class="field" style="top: 220px; left: 50px; width: 37.5px;" placeholder="개월수 입력"
+            pattern="\d+" title="숫자만 입력 가능합니다.">
+        <input type="text" class="field" style="top: 220px; left: 200px; width: 37.5px;" placeholder="운동복 개월수 입력"
+            pattern="\d+" title="숫자만 입력 가능합니다.">
+        <input type="text" class="field" style="top: 220px; left: 370px; width: 37.5px;" placeholder="개인락카 개월수 입력"
+            pattern="\d+" title="숫자만 입력 가능합니다.">
+        <button id="submitBtn">제출</button>
+    </div>
+    <script>
+        const nameField = document.getElementById('nameField');
+        nameField.addEventListener('blur', () => {
+            const value = nameField.value;
+            if (value.length < 2 || value.length > 5) {
+                alert('이름은 한글 2~5자만 입력 가능합니다.');
+            }
+        });
+        const phoneField = document.getElementById('phoneField');
+        phoneField.addEventListener('blur', () => {
+            const value = phoneField.value.replace(/[^0-9]/g, '');
+            if (value.length !== 11) {
+                alert('전화번호는 11자리 숫자를 입력해야 합니다.');
+                phoneField.value = '';
+            } else {
+                phoneField.value = `${value.slice(0, 3)}-${value.slice(3, 7)}-${value.slice(7)}`;
+            }
+        });
+        phoneField.addEventListener('input', () => {
+            const value = phoneField.value.replace(/[^0-9]/g, '');
+            phoneField.value = value.slice(0, 11);
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', () => {
+            html2canvas(document.getElementById('container')).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/jpeg');
+                link.download = 'contract.jpg';
+                link.click();
+            }).catch(error => {
+                console.error('캔버스 생성 중 오류 발생:', error);
+            });
+        });
+
+        // ZIP Code Functionality
+        function sample6_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    var addr = '';
+                    var extraAddr = '';
+                    if (data.userSelectedType === 'R') {
+                        addr = data.roadAddress;
+                    } else {
+                        addr = data.jibunAddress;
+                    }
+                    if (data.userSelectedType === 'R') {
+                        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                            extraAddr += data.bname;
+                        }
+                        if (data.buildingName !== '' && data.apartment === 'Y') {
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        if (extraAddr !== '') {
+                            extraAddr = ' (' + extraAddr + ')';
+                        }
+                        document.getElementById("sample6_extraAddress").value = extraAddr;
+                    } else {
+                        document.getElementById("sample6_extraAddress").value = '';
+                    }
+                    document.getElementById('sample6_postcode').value = data.zonecode;
+                    document.getElementById("sample6_address").value = addr;
+                    document.getElementById("sample6_detailAddress").focus();
+                }
+            }).open();
+        }
+    </script>
 </body>
 
 </html>
